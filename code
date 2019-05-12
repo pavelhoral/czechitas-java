@@ -1,0 +1,6 @@
+#!/bin/sh
+DIR=$(dirname $(realpath "$0"))
+export JAVA_HOME="$DIR"/jdk-12.0.1
+export MAVEN_CONFIG=-Dmaven.repo.local="$DIR"/maven
+"$DIR"/vscode-linux-x64/bin/code --extensions-dir extensions workspace
+
