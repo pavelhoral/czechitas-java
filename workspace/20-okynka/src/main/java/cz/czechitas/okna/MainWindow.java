@@ -1,5 +1,8 @@
 package cz.czechitas.okna;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,11 +21,18 @@ public class MainWindow extends JFrame {
         addMouseListener(new MouseHandler());
     }
     
+    private void makej(Point point) {
+        Graphics graphics = getGraphics();
+        graphics.setColor(Color.BLUE);
+        graphics.fillOval(point.x, point.y, 10, 10);
+    }
+
+
     private class MouseHandler extends MouseAdapter {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println("CLICKED " + e.getPoint());
+            makej(e.getPoint());
         }
 
     }
