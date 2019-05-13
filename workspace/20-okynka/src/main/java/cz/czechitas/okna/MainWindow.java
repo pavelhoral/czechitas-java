@@ -25,7 +25,7 @@ public class MainWindow extends JFrame {
         addMouseListener(mouseHandler);
         addMouseMotionListener(mouseHandler);
     }
-    
+
     private void makej(Point start, Point end) {
         Graphics2D graphics = (Graphics2D) getGraphics();
         graphics.setColor(Color.RED);
@@ -48,6 +48,7 @@ public class MainWindow extends JFrame {
         public void mousePressed(MouseEvent e) {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 previous = e.getPoint();
+                makej(previous, previous);
             } else {
                 smazto();
             }
