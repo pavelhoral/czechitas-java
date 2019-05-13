@@ -1,0 +1,7 @@
+# Ignore ewverything
+/*
+
+# Except settings
+!/User/settings.json
+!/.gitignore
+
