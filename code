@@ -1,5 +1,6 @@
 DIR=$(cd "$(dirname "$0")"; pwd)
 export JAVA_HOME="$DIR"/jdk-12.0.1.jdk/Contents/Home
 export MAVEN_CONFIG=-Dmaven.repo.local="$DIR"/maven
-"$DIR"/vscode-1.33.1.app/Contents/Resources/app/bin/code" --extensions-dir extensions workspace
+export MVNW_PATH="$DIR"/maven/mvnw
+"$DIR"/vscode-1.33.1.app/Contents/Resources/app/bin/code" --extensions-dir extensions --user-data-dir .vscode workspace/10-objekty
 
