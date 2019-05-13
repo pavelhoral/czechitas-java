@@ -28,9 +28,15 @@ public class MainWindow extends JFrame {
 
     private void makej(Point start, Point end) {
         Graphics2D graphics = (Graphics2D) getGraphics();
-        graphics.setColor(Color.RED);
-        graphics.setStroke(new BasicStroke(5, BasicStroke.CAP_ROUND, 0));
-        graphics.drawLine(start.x, start.y, end.x, end.y);
+        Dimension size = getSize();
+        for (int x = 0; x < size.width; x++) {
+            for (int y = 0; y < size.height; y++) {
+                double[] souradnice = new double[] { x - size.width / 2, y - size.height / 2 };
+                int odstin = ((int) Matematika.absolut(souradnice)) % 256;
+                graphics.setColor(new Color(odstin, odstin, odstin));
+                graphics.drawRect(x, y, 1, 1);
+            }
+        }
     }
 
     private void smazto() {
