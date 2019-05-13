@@ -1,9 +1,9 @@
 package cz.czechitas.okna;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,15 +28,32 @@ public class MainWindow extends JFrame {
 
     private void makej(Point start, Point end) {
         Graphics2D graphics = (Graphics2D) getGraphics();
-        Dimension size = getSize();
+        Dimension windowSize = getSize();
+        Insets windowInsets = getInsets();
+        Dimension size = new Dimension(
+                windowSize.width - windowInsets.left - windowInsets.right, 
+                windowSize.height - windowInsets.top - windowInsets.bottom);
+        double scale = 5.0 / size.width;
         for (int x = 0; x < size.width; x++) {
             for (int y = 0; y < size.height; y++) {
-                double[] souradnice = new double[] { x - size.width / 2, y - size.height / 2 };
-                int odstin = ((int) Matematika.absolut(souradnice)) % 256;
-                graphics.setColor(new Color(odstin, odstin, odstin));
-                graphics.drawRect(x, y, 1, 1);
+                double[] souradnice = new double[] { (x - size.width / 2) * scale, (y - size.height / 2) * scale };
+                graphics.setColor(odstin(souradnice));
+                graphics.drawRect(x + windowInsets.left, y + windowInsets.top, 1, 1);
             }
         }
+    }
+
+    private Color odstin(double[] souradnice) {
+        double[] hodnota = souradnice;
+        int kroky = 0;
+        while (kroky++ < 20 && Matematika.absolut(hodnota) <= 2) {
+            hodnota = Matematika.z2c(hodnota, souradnice);
+        }
+        if (kroky > 20) {
+            return Color.WHITE;
+        }
+        int odstin = (int) (256 * ((double) kroky - 1) / 20);
+        return new Color(odstin, odstin, odstin);
     }
 
     private void smazto() {
