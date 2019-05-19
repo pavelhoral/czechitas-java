@@ -1,5 +1,6 @@
 package cz.czechitas.okna;
 
+// Neco malo matematiky komplexnich cisel
 public class Matematika {
 
     public static double[] soucet(double[] prvni, double[] druhy) {
